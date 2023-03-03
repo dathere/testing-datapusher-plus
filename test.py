@@ -9,7 +9,7 @@ import csv
 
 folder = "csvs"
 API_URL = "http://127.0.0.1:8080/"
-api_key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJOWTRUdlRiellpVXU4Y1RyckVPc2w0VlZHVEVaZDZmY3RVaXUzQ0QzckpVaGY3cU11T2FIUjAyamREWl94Slpjb09qVlJqU05xT2QxUC1pZiIsImlhdCI6MTY3NjkwMDgxMX0.uPpWZRj9SCkJK2zs8TWJ70qqQTSsKA89y2CGaY-sdT8"
+api_key = "Your_API_KEY"
 base_url = "http://127.0.0.1:8080/api/3/action/resource_show?id="
 csv_url = "http://127.0.0.1/datastore/dump/"
 # Define the function to find CSV files in a folder

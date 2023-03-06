@@ -14,6 +14,8 @@ Clone the repo and edit the API key and URL endpoints
 git clone https://github.com/dathere/testing-datapusher-plus.git
 cd testing-datapusher-plus
 nano test.py
+pip install -r requirements.txt
+python test.py
 ```
     
 ## Add files

@@ -69,7 +69,7 @@ def expected_output(name):
 def action(api_url,file_path):
     file_name = os.path.basename(file_path)
     data_dict = {
-                'package_id': "newdataset",
+                'package_id': "test_dataset",
                 'name': file_name,
                 'description': "test",
                 'format': "csv",

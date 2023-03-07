@@ -23,6 +23,6 @@ python test.py
 To add custom test files to the test
 ```bash
  1) Add the files in the csvs folder 
- 2) Add the processed files in the expected folder 
+ 2) Add the processed files in the csvs/expected folder 
  3) Add the file name and expected output in the data.csv
  ```

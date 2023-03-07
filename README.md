@@ -9,7 +9,7 @@ Clone the repo and edit the API key and URL endpoints
 ## Installation
 
 
-
+To run this you need to have a dataset named "test_dataset" in your ckan instance
 ```bash
 git clone https://github.com/dathere/testing-datapusher-plus.git
 cd testing-datapusher-plus

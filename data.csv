@@ -1,0 +1,8 @@
+Name,Expected output
+Attendance.csv,valid file
+LO7322.csv,valid file
+LONumbers-2010.xlsx,invalid file
+formula_stress_test.xls.0.csv,valid file
+large_strings.xls,invalid file
+phonetic_text.xls,invalid file
+ErrorTypes.csv,valid file

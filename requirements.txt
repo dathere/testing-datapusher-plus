@@ -1,0 +1,9 @@
+requests==2.18.4
+requests-toolbelt==0.8.0
+os
+json
+requests_toolbelt 
+time 
+pandas
+csv
+configparser

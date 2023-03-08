@@ -5,20 +5,28 @@ from requests_toolbelt import MultipartEncoder
 from time import sleep 
 import pandas as pd
 import csv
+import configparser
 
 
-folder = "csvs"
-API_URL = "http://127.0.0.1:8080/"
-api_key = "Your_API_KEY"
-base_url = "http://127.0.0.1:8080/api/3/action/resource_show?id="
-csv_url = "http://127.0.0.1/datastore/dump/"
+
+#Read config.ini file
+config_obj = configparser.ConfigParser()
+config_obj.read("config.ini")
+setup = config_obj["setup"]
+
+folder = setup["folder"]
+API_URL = setup["API_URL"]
+api_key = setup["api_key"]
+base_url = setup["base_url"]
+csv_url = setup["csv_url"]
+
+
+
 # Define the function to find CSV files in a folder
-
-
 def find_csv_files(folder):
     csv_files = []
     for file_name in os.listdir(folder):
-        if file_name.endswith(".csv"):
+        if file_name.endswith(".csv") or file_name.endswith(".xlsx") or file_name.endswith(".xls"):
             file_path = os.path.join(folder, file_name)
             csv_files.append(file_path)
     return csv_files
@@ -68,11 +76,13 @@ def expected_output(name):
 
 def action(api_url,file_path):
     file_name = os.path.basename(file_path)
+    extention = os.path.splitext(file_name)[1][1:]
+    print(extention)
     data_dict = {
-                'package_id': "test_dataset",
+                'package_id': setup["package_id"],
                 'name': file_name,
                 'description': "test",
-                'format': "csv",
+                'format': extention,
                 'url': '',
                 'id': ''
             }

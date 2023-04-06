@@ -12,14 +12,12 @@ srcdir = os.getenv('SRC_DIR')
 #Read config.ini file
 config_obj = configparser.ConfigParser()
 config_obj.read("config.ini")
-print(config_obj.sections())
 setup = config_obj["setup"]
 folder = setup["folder"]
 API_URL = setup["API_URL"]
 api_key = setup["api_key"]
 base_url = setup["base_url"]
 csv_url = setup["csv_url"]
-
 
 
 # Define the function to find CSV files in a folder
@@ -33,7 +31,6 @@ def find_csv_files(folder):
 
 def compare(id,name):
     response = requests.get(csv_url+id)
-    print("hello"+ response)
     filename = "data.csv"
     with open(filename, "wb") as f:
         f.write(response.content)
@@ -54,9 +51,7 @@ def compare(id,name):
 def status(id):
     sleep(10)
     response = requests.get(base_url+id)
-    print(response)
     result = json.loads(response.content.decode())["result"]
-    print(result)
     if  result["datastore_active"]:
         print(f"Resource  is active")
         return True
@@ -79,7 +74,6 @@ def expected_output(name):
 def action(api_url,file_path):
     file_name = os.path.basename(file_path)
     extention = os.path.splitext(file_name)[1][1:]
-    print(extention)
     data_dict = {
                 'package_id': setup["package_id"],
                 'name': file_name,
@@ -124,9 +118,9 @@ def action(api_url,file_path):
             compare(id_value,name)
         else :
             if expected_op == "invalid file":
-                print(name + "Test case passed")
+                print(name + "\nTest case passed")
             else:
-                print(name + "Test case Failed")
+                print(name + "\nTest case Failed")
 
     else:
         print(" success is False")
@@ -137,7 +131,6 @@ def action(api_url,file_path):
 
 # Define the main function
 def main():
-    sleep(20)
     # Parse command-line arguments
     # Find CSV files in the folder
     csv_files = find_csv_files(folder)

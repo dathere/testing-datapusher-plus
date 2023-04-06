@@ -12,8 +12,8 @@ import configparser
 #Read config.ini file
 config_obj = configparser.ConfigParser()
 config_obj.read("config.ini")
-setup = config_obj["setup"]
 print(config_obj.sections())
+setup = config_obj["setup"]
 folder = setup["folder"]
 API_URL = setup["API_URL"]
 api_key = setup["api_key"]

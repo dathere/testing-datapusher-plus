@@ -25,7 +25,7 @@ csv_url = setup["csv_url"]
 # Define the function to find CSV files in a folder
 def find_csv_files(folder):
     csv_files = []
-    for file_name in os.listdir(folder):
+    for file_name in os.listdir(srcdir+"/testing-datapusher-plus/"+folder):
         if file_name.endswith(".csv") or file_name.endswith(".xlsx") or file_name.endswith(".xls"):
             file_path = os.path.join(folder, file_name)
             csv_files.append(file_path)
@@ -39,7 +39,7 @@ def compare(id,name):
 
     # Load both CSV files into dataframes
     new_data = pd.read_csv(filename)
-    old_data = pd.read_csv("csvs/expected_output"/+id+'.csv')
+    old_data = pd.read_csv(srcdir+"/testing-datapusher-plus/csvs/expected_output"/+id+'.csv')
 
     # Compare the two dataframes
     if new_data.equals(old_data):
@@ -63,7 +63,7 @@ def status(id):
         return False
 
 def expected_output(name):
-    with open('data.csv', mode='r') as csv_file:
+    with open(srcdir+'testing-datapusher-plus/data.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             if row['Name'] == name:

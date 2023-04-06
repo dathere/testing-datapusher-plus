@@ -135,6 +135,7 @@ def action(api_url,file_path):
 
 # Define the main function
 def main():
+    sleep(20)
     # Parse command-line arguments
     # Find CSV files in the folder
     csv_files = find_csv_files(folder)

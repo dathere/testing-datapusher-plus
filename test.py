@@ -11,7 +11,7 @@ import configparser
 srcdir = os.getenv('SRC_DIR')
 #Read config.ini file
 config_obj = configparser.ConfigParser()
-config_obj.read(srcdir+"/testing-datapusher-plus/config.ini")
+config_obj.read("config.ini")
 print(config_obj.sections())
 setup = config_obj["setup"]
 folder1 = setup["folder"]
@@ -19,14 +19,13 @@ API_URL = setup["API_URL"]
 api_key = setup["api_key"]
 base_url = setup["base_url"]
 csv_url = setup["csv_url"]
-folder= srcdir+"/testing-datapusher-plus/"+folder1
 
 
 
 # Define the function to find CSV files in a folder
 def find_csv_files(folder):
     csv_files = []
-    for file_name in os.listdir(srcdir+"/testing-datapusher-plus/"+folder):
+    for file_name in os.listdir(folder):
         if file_name.endswith(".csv") or file_name.endswith(".xlsx") or file_name.endswith(".xls"):
             file_path = os.path.join(folder, file_name)
             csv_files.append(file_path)
@@ -40,7 +39,7 @@ def compare(id,name):
 
     # Load both CSV files into dataframes
     new_data = pd.read_csv(filename)
-    old_data = pd.read_csv(srcdir+"/testing-datapusher-plus/csvs/expected_output"/+id+'.csv')
+    old_data = pd.read_csv('/csvs/expected_output/'+id+'.csv')
 
     # Compare the two dataframes
     if new_data.equals(old_data):
@@ -64,7 +63,7 @@ def status(id):
         return False
 
 def expected_output(name):
-    with open(srcdir+'testing-datapusher-plus/data.csv', mode='r') as csv_file:
+    with open('data.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             if row['Name'] == name:

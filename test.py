@@ -136,7 +136,7 @@ def action(api_url,file_path):
 # Define the main function
 def main():
     # Parse command-line arguments
-
+    folder= srcdir+"/testing-datapusher-plus/"+folder
     # Find CSV files in the folder
     csv_files = find_csv_files(folder)
 

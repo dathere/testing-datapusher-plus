@@ -33,6 +33,7 @@ def find_csv_files(folder):
 
 def compare(id,name):
     response = requests.get(csv_url+id)
+    print("hello"+ response)
     filename = "data.csv"
     with open(filename, "wb") as f:
         f.write(response.content)
@@ -53,8 +54,9 @@ def compare(id,name):
 def status(id):
     sleep(10)
     response = requests.get(base_url+id)
+    print(response)
     result = json.loads(response.content.decode())["result"]
-
+    print(result)
     if  result["datastore_active"]:
         print(f"Resource  is active")
         return True

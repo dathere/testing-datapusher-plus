@@ -8,10 +8,10 @@ import csv
 import configparser
 
 
-
+srcdir = os.getenv('SRC_DIR')
 #Read config.ini file
 config_obj = configparser.ConfigParser()
-config_obj.read("config.ini")
+config_obj.read(srcdir+"/testing-datapusher-plus/config.ini")
 print(config_obj.sections())
 setup = config_obj["setup"]
 folder = setup["folder"]

@@ -14,11 +14,12 @@ config_obj = configparser.ConfigParser()
 config_obj.read(srcdir+"/testing-datapusher-plus/config.ini")
 print(config_obj.sections())
 setup = config_obj["setup"]
-folder = setup["folder"]
+folder1 = setup["folder"]
 API_URL = setup["API_URL"]
 api_key = setup["api_key"]
 base_url = setup["base_url"]
 csv_url = setup["csv_url"]
+folder= srcdir+"/testing-datapusher-plus/"+folder1
 
 
 
@@ -136,7 +137,6 @@ def action(api_url,file_path):
 # Define the main function
 def main():
     # Parse command-line arguments
-    folder= srcdir+"/testing-datapusher-plus/"+folder
     # Find CSV files in the folder
     csv_files = find_csv_files(folder)
 

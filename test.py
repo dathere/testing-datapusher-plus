@@ -32,8 +32,7 @@ def find_csv_files(folder):
 def compare(id,name):
     response = requests.get(csv_url+id)
     filename = "data.csv"
-    with open(filename, "wb") as f:
-        f.write(response.content)
+
 
     # Load both CSV files into dataframes
     new_data = pd.read_csv(filename)

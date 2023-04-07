@@ -36,7 +36,7 @@ def compare(id,name):
 
     # Load both CSV files into dataframes
     new_data = pd.read_csv(filename)
-    old_data = pd.read_csv('/csvs/expected_output/'+id+'.csv')
+    old_data = pd.read_csv('/csvs/expected_output/'+name+'.csv')
 
     # Compare the two dataframes
     if new_data.equals(old_data):

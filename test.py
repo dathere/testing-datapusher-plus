@@ -30,8 +30,11 @@ def find_csv_files(folder):
     return csv_files
 
 def compare(id,name):
+    extention = os.path.splitext(name)[1][1:]
     response = requests.get(csv_url+id)
-    filename = "data.csv"
+    filename = "olddata."+extention
+    with open(filename, "wb") as f:
+        f.write(response.content)
 
 
     # Load both CSV files into dataframes
@@ -40,9 +43,9 @@ def compare(id,name):
 
     # Compare the two dataframes
     if new_data.equals(old_data):
-        print(name + "Test case passed")
+        print(name + "\nTest case passed")
     else:
-        print(name + "Test case failed")
+        print(name + "\nTest case failed")
 
 
 

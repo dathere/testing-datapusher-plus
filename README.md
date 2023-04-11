@@ -17,6 +17,10 @@ nano test.py
 pip install -r requirements.txt
 python test.py
 ```
+## Add Custom values
+Change the values in congig.ini
+    
+    
     
 ## Add files
 

@@ -18,7 +18,7 @@ pip install -r requirements.txt
 python test.py
 ```
 ## Add Custom values
-Change the values in congig.ini
+Change the values in config.ini
     
     
     

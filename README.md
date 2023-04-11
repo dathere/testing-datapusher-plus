@@ -19,10 +19,11 @@ python test.py
 ```
 ## Add Custom values
 Change the values in config.ini
+ ```bash
 1.Add API token
 2.Create a public test dataset in ckan and add the name in config file
-3.Add the base url 
-    
+3.Add the base url
+  ```
     
     
 ## Add files

@@ -31,7 +31,7 @@ def find_csv_files(folder):
 
 
 
-def upload_csv_from_url(api_url, csv_url):
+def upload_csv_from_url(api_url):
     file_name = "link_upload.csv"
 
     # Check if the file exists
@@ -41,12 +41,11 @@ def upload_csv_from_url(api_url, csv_url):
             for row in csv_reader:
                 url = row["URL"]
                 name = row["name"]
-                extention = name.splitext(file_name)[1][1:]
                 data_dict = {
                     "package_id": setup["package_id"],
                     "name": name,
                     "description": "test",
-                    "format": "extention",
+                    "format": "csv",
                     "url": url,
                     "id": "",
                 }
@@ -67,14 +66,12 @@ def upload_csv_from_url(api_url, csv_url):
                     id_value = json_data["result"]["id"]
                     name = json_data["result"]["name"]
                     print("ID value is:", id_value)
-                    expected_op = expected_output(name)
                     datastore = status(id_value)
                     if datastore :
                             print(name + " Test case passed")
                     else:
                             print(name + " Test case Failed")
                 else:
-                    print("Success is False")
                     print(name + " Test case Failed")
                 print("\n")
     else:
@@ -91,6 +88,7 @@ def compare(id,name):
     # Load both CSV files into dataframes
     new_data = pd.read_csv(filename)
     old_data = pd.read_csv('csvs/expected_output/'+name)
+
 
     # Compare the two dataframes
     if new_data.equals(old_data):
@@ -191,7 +189,6 @@ def main():
     # Send each CSV file to the API
     for file_path in csv_files:
         response = action(API_URL, file_path)
-        print(response)
     # Upload CSV from URL
     upload_csv_from_url(API_URL)
 

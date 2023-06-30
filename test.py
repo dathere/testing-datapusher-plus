@@ -29,6 +29,57 @@ def find_csv_files(folder):
             csv_files.append(file_path)
     return csv_files
 
+
+
+def upload_csv_from_url(api_url, csv_url):
+    file_name = "link_upload.csv"
+
+    # Check if the file exists
+    if os.path.isfile(file_name):
+        with open(file_name, "r") as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                url = row["URL"]
+                name = row["name"]
+                extention = name.splitext(file_name)[1][1:]
+                data_dict = {
+                    "package_id": setup["package_id"],
+                    "name": name,
+                    "description": "test",
+                    "format": "extention",
+                    "url": url,
+                    "id": "",
+                }
+
+                m = MultipartEncoder(fields=data_dict)
+                r = requests.post(
+                    api_url + "/api/action/resource_create",
+                    data=m,
+                    headers={
+                        "content-type": m.content_type,
+                        "X-CKAN-API-Key": api_key,
+                    },
+                )
+
+                json_data = r.json()
+                if json_data["success"] == True:
+                    print("Success is True")
+                    id_value = json_data["result"]["id"]
+                    name = json_data["result"]["name"]
+                    print("ID value is:", id_value)
+                    expected_op = expected_output(name)
+                    datastore = status(id_value)
+                    if datastore :
+                            print(name + " Test case passed")
+                    else:
+                            print(name + " Test case Failed")
+                else:
+                    print("Success is False")
+                    print(name + " Test case Failed")
+                print("\n")
+    else:
+        print("link_upload.csv file not found.")
+
 def compare(id,name):
     extention = os.path.splitext(name)[1][1:]
     response = requests.get(csv_url+id)
@@ -141,6 +192,8 @@ def main():
     for file_path in csv_files:
         response = action(API_URL, file_path)
         print(response)
+    # Upload CSV from URL
+    upload_csv_from_url(API_URL)
 
 
 if __name__ == "__main__":
